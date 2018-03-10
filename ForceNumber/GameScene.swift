@@ -11,13 +11,24 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var number: Int = 0
+    let labelNumber = SKLabelNode()
+    
     override func didMove(to view: SKView) {
-        let label = SKLabelNode()
-        label.position.x = view.frame.midX
-        label.position.y = view.frame.midY
-        label.text = "HelloWorld"
-        label.fontColor = UIColor.white
-        addChild(label)
+        labelNumber.fontSize = 100
+        labelNumber.name = "number"
+        labelNumber.position.x = view.frame.midX
+        labelNumber.position.y = view.frame.midY
+        labelNumber.text = String(self.number)
+        labelNumber.fontColor = UIColor.white
+        addChild(labelNumber)
+        
+        let addButton = Button(text: "+")
+        addButton.name = "add"
+        addButton.position.x = view.frame.size.width * 0.8
+        addButton.position.y = view.frame.size.height * 0.7
+        addButton.fontSize = 60
+        self.addChild(addButton)
     }
     
     
@@ -31,6 +42,17 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first as UITouch? else { return }
+        let touchNode:SKNode = self.atPoint(touch.location(in: self))
+        
+        if let name = touchNode.name{
+            print("touchNode:" + name)
+            if name == "add" {
+                number += 1
+                labelNumber.text = String(self.number)
+            }
+        }
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
