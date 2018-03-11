@@ -10,7 +10,12 @@ import SpriteKit
 
 class Number: SKLabelNode{
 
-    var max: Int = 30
+    private var max: Int = 30{
+        didSet{
+            self.maxLabel.text = String(max)
+        }
+    }
+    private let maxLabel = SKLabelNode()
     var isMax = false
     
     private var number:Int = 0{
@@ -22,6 +27,7 @@ class Number: SKLabelNode{
     convenience init(max: Int){
         self.init()
         self.max = max
+        maxLabel.text = String(max)
     }
     
     override init() {
@@ -29,6 +35,11 @@ class Number: SKLabelNode{
         
         fontSize = 100
         text = String(number)
+        
+        maxLabel.fontSize = 70
+        maxLabel.position.y = 120
+        maxLabel.text = String(max)
+        addChild(maxLabel)
     }
     
     func add(num: Int = 1){
