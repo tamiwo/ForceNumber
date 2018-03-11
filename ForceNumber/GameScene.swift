@@ -20,13 +20,21 @@ class GameScene: SKScene {
         number.position.y = view.frame.midY
         addChild(number)
         
-        let addButton = Button(label: "+")
+        let addButton = Button(label: "➕")
         addButton.position.x = view.frame.size.width * 0.8
         addButton.position.y = view.frame.size.height * 0.7
         addButton.touchesBeganAction {
             self.number.add()
         }
         self.addChild(addButton)
+        
+        let resetButton = Button(label: "🔄")
+        resetButton.position.x = view.frame.size.width * 0.5
+        resetButton.position.y = view.frame.size.height * 0.2
+        resetButton.touchesBeganAction {
+            self.number.reset()
+        }
+        self.addChild(resetButton)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
