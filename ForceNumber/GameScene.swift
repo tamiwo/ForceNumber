@@ -35,11 +35,17 @@ class GameScene: SKScene {
         addButton.position.x = backGround.frame.midX
         addButton.position.y = backGround.frame.maxY * 0.2
         addButton.touchesBeganAction {
+            guard self.number.isMax == false else{ return }
             self.number.add()
-            self.pushCount += 1
-            if self.pushCount == 3 {
-                self.next()
-                addButton.outFocus()
+            if self.number.isMax == true{
+                self.backGround.fillColor = UIColor.red
+            }
+            else{
+                self.pushCount += 1
+                if self.pushCount == 3 {
+                    self.next()
+                    addButton.outFocus()
+                }
             }
         }
         backGround.addChild(addButton)
@@ -48,6 +54,7 @@ class GameScene: SKScene {
         nextButton.position.x = backGround.frame.midX
         nextButton.position.y = backGround.frame.maxY * 0.5
         nextButton.touchesEndedAction {
+            guard self.number.isMax == false else { return }
             if self.pushCount > 0{
                 self.next()
             }
@@ -67,6 +74,7 @@ class GameScene: SKScene {
         resetButton.position.x = view.frame.size.width * 0.5
         resetButton.position.y = view.frame.size.height * 0.2
         resetButton.touchesEndedAction {
+            self.backGround.fillColor = UIColor.gray
             self.number.reset()
             self.pushCount = 0
         }
