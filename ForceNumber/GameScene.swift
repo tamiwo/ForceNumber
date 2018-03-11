@@ -23,34 +23,22 @@ class GameScene: SKScene {
         labelNumber.fontColor = UIColor.white
         addChild(labelNumber)
         
-        let addButton = Button(text: "+")
-        addButton.name = "add"
+        let addButton = Button(label: "+")
         addButton.position.x = view.frame.size.width * 0.8
         addButton.position.y = view.frame.size.height * 0.7
-        addButton.fontSize = 60
+        addButton.touchesBeganAction {
+            self.number += 1
+            self.labelNumber.text = String(self.number)
+        }
         self.addChild(addButton)
-    }
-    
-    
-    func touchDown(atPoint pos : CGPoint) {
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first as UITouch? else { return }
         let touchNode:SKNode = self.atPoint(touch.location(in: self))
         
-        if let name = touchNode.name{
-            print("touchNode:" + name)
-            if name == "add" {
-                number += 1
-                labelNumber.text = String(self.number)
-            }
+        if let button = touchNode as? Button {
+            button.touchesBegan()
         }
         
     }

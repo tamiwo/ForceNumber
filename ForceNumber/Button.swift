@@ -10,9 +10,29 @@ import SpriteKit
 
 class Button: SKLabelNode{
     
-    init(text:String){
+    private var beganAction: (() -> Void)?
+    private var endedAction: (() -> Void)?
+
+    init(label:String){
         super.init()
-        self.text = text
+        text = label
+        fontSize = 60
+    }
+    
+    func touchesBeganAction(action: @escaping () -> Void){
+        beganAction = action
+    }
+    
+    func touchesEnded(action: @escaping () -> Void){
+        endedAction = action
+    }
+
+    func touchesBegan() {
+        beganAction?()
+    }
+    
+   func touchesEnded() {
+        endedAction?()
     }
     
     required init?(coder aDecoder: NSCoder) {
