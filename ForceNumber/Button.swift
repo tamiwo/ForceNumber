@@ -23,7 +23,7 @@ class Button: SKLabelNode{
         beganAction = action
     }
     
-    func touchesEnded(action: @escaping () -> Void){
+    func touchesEndedAction(action: @escaping () -> Void){
         endedAction = action
     }
 
@@ -38,11 +38,13 @@ class Button: SKLabelNode{
     }
     
     func inFocus(){
-        
+        xScale = 1.2
+        yScale = 1.2
     }
     
     func outFocus(){
-    
+        xScale = 1.0
+        yScale = 1.0
     }
     
     required init?(coder aDecoder: NSCoder) {
