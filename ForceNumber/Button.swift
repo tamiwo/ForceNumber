@@ -28,11 +28,21 @@ class Button: SKLabelNode{
     }
 
     func touchesBegan() {
+        inFocus()
         beganAction?()
     }
     
-   func touchesEnded() {
+    func touchesEnded() {
+        outFocus()
         endedAction?()
+    }
+    
+    func inFocus(){
+        
+    }
+    
+    func outFocus(){
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
