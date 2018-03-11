@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A36B6E5F2054D2BF00466321 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B6E5E2054D2BF00466321 /* Number.swift */; };
+		A36B6E6120554ABB00466321 /* Pannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B6E6020554ABB00466321 /* Pannel.swift */; };
 		A38E0CE22053DF0000467A61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E0CE12053DF0000467A61 /* AppDelegate.swift */; };
 		A38E0CE82053DF0000467A61 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E0CE72053DF0000467A61 /* GameScene.swift */; };
 		A38E0CEA2053DF0000467A61 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E0CE92053DF0000467A61 /* GameViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		A36B6E5E2054D2BF00466321 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
+		A36B6E6020554ABB00466321 /* Pannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pannel.swift; sourceTree = "<group>"; };
 		A38E0CDE2053DF0000467A61 /* ForceNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForceNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38E0CE12053DF0000467A61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A38E0CE72053DF0000467A61 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 		A38E0CE02053DF0000467A61 /* ForceNumber */ = {
 			isa = PBXGroup;
 			children = (
+				A36B6E6020554ABB00466321 /* Pannel.swift */,
 				A38E0CF9205439BA00467A61 /* Button.swift */,
 				A38E0CE12053DF0000467A61 /* AppDelegate.swift */,
 				A38E0CE72053DF0000467A61 /* GameScene.swift */,
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A36B6E5F2054D2BF00466321 /* Number.swift in Sources */,
+				A36B6E6120554ABB00466321 /* Pannel.swift in Sources */,
 				A38E0CE82053DF0000467A61 /* GameScene.swift in Sources */,
 				A38E0CEA2053DF0000467A61 /* GameViewController.swift in Sources */,
 				A38E0CE22053DF0000467A61 /* AppDelegate.swift in Sources */,

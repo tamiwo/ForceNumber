@@ -14,16 +14,12 @@ class GameScene: SKScene {
     let number = Number()
     var touchingButton: Button?
     var pushCount = 0
-    var backGround: SKShapeNode!
+    var pannel: Pannel!
     
     override func didMove(to view: SKView) {
-        backGround = SKShapeNode(rect: CGRect(origin: CGPoint.zero,
-                                                  size: CGSize(width: frame.midX,
-                                                               height: frame.maxY)))
-        backGround.fillColor = UIColor.gray
-        backGround.lineWidth = 0
-        backGround.zPosition = 1
-        addChild(backGround)
+
+        pannel = Pannel(frame: view.frame)
+        addChild(pannel)
         
         number.name = "number"
         number.zPosition = 3
@@ -32,13 +28,13 @@ class GameScene: SKScene {
         addChild(number)
         
         let addButton = Button(label: "➕")
-        addButton.position.x = backGround.frame.midX
-        addButton.position.y = backGround.frame.maxY * 0.2
+        addButton.position.x = pannel.size.width * 0.5
+        addButton.position.y = pannel.size.height * 0.2
         addButton.touchesBeganAction {
             guard self.number.isMax == false else{ return }
             self.number.add()
             if self.number.isMax == true{
-                self.backGround.fillColor = UIColor.red
+                self.pannel.backColor = UIColor.red
             }
             else{
                 self.pushCount += 1
@@ -48,18 +44,18 @@ class GameScene: SKScene {
                 }
             }
         }
-        backGround.addChild(addButton)
+        pannel.addChild(addButton)
         
         let nextButton = Button(label: "🆗")
-        nextButton.position.x = backGround.frame.midX
-        nextButton.position.y = backGround.frame.maxY * 0.5
+        nextButton.position.x = addButton.position.x
+        nextButton.position.y = pannel.size.height * 0.5
         nextButton.touchesEndedAction {
             guard self.number.isMax == false else { return }
             if self.pushCount > 0{
                 self.next()
             }
         }
-        backGround.addChild(nextButton)
+        pannel.addChild(nextButton)
         
         let dummyButton1 = Button(label: "➕")
         dummyButton1.position = addButton.position
@@ -74,7 +70,7 @@ class GameScene: SKScene {
         resetButton.position.x = view.frame.size.width * 0.5
         resetButton.position.y = view.frame.size.height * 0.2
         resetButton.touchesEndedAction {
-            self.backGround.fillColor = UIColor.gray
+            self.pannel.backColor = UIColor.gray
             self.number.reset()
             self.pushCount = 0
         }
@@ -82,11 +78,11 @@ class GameScene: SKScene {
     }
     
     func next(){
-        if self.backGround.position.x == 0 {
-            self.backGround.position.x = self.frame.midX
+        if self.pannel.position.x == 0 {
+            self.pannel.position.x = self.frame.midX
         }
         else {
-            self.backGround.position.x = 0
+            self.pannel.position.x = 0
         }
         self.pushCount = 0
     }
