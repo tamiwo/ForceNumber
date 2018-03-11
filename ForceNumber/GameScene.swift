@@ -38,21 +38,24 @@ class GameScene: SKScene {
             self.number.add()
             self.pushCount += 1
             if self.pushCount == 3 {
-                if self.backGround.position.x == 0 {
-                    self.backGround.position.x = self.frame.midX
-                }
-                else {
-                    self.backGround.position.x = 0
-                }
+                self.next()
                 addButton.outFocus()
-                self.pushCount = 0
             }
         }
         backGround.addChild(addButton)
         
+        let nextButton = Button(label: "🆗")
+        nextButton.position.x = backGround.frame.midX
+        nextButton.position.y = backGround.frame.maxY * 0.5
+        nextButton.touchesEndedAction {
+            if self.pushCount > 0{
+                self.next()
+            }
+        }
+        backGround.addChild(nextButton)
+        
         let dummyButton1 = Button(label: "➕")
-        dummyButton1.position.x = backGround.frame.midX
-        dummyButton1.position.y = backGround.frame.maxY * 0.2
+        dummyButton1.position = addButton.position
         addChild(dummyButton1)
         let dummyButton2 = Button(label: "➕")
         dummyButton2.position = dummyButton1.position
@@ -68,6 +71,16 @@ class GameScene: SKScene {
             self.pushCount = 0
         }
         self.addChild(resetButton)
+    }
+    
+    func next(){
+        if self.backGround.position.x == 0 {
+            self.backGround.position.x = self.frame.midX
+        }
+        else {
+            self.backGround.position.x = 0
+        }
+        self.pushCount = 0
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
