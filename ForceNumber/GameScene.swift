@@ -31,7 +31,7 @@ class GameScene: SKScene {
         let resetButton = Button(label: "🔄")
         resetButton.position.x = view.frame.size.width * 0.5
         resetButton.position.y = view.frame.size.height * 0.2
-        resetButton.touchesBeganAction {
+        resetButton.touchesEndedAction {
             self.number.reset()
         }
         self.addChild(resetButton)
@@ -51,9 +51,14 @@ class GameScene: SKScene {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first as UITouch? else { return }
+        guard let touch = touches.first as UITouch? else {
+            touchingButton?.outFocus()
+            return
+            
+        }
         let touchNode:SKNode = self.atPoint(touch.location(in: self))
         guard let button = touchNode as? Button else {
+            touchingButton?.outFocus()
             touchingButton = nil
             return
         }
@@ -66,9 +71,13 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first as UITouch? else { return }
+        guard let touch = touches.first as UITouch? else {
+            touchingButton?.outFocus()
+            return
+        }
         let touchNode:SKNode = self.atPoint(touch.location(in: self))
         guard let button = touchNode as? Button else {
+            touchingButton?.outFocus()
             touchingButton = nil
             return
         }
@@ -77,6 +86,7 @@ class GameScene: SKScene {
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
     }
 
     override func update(_ currentTime: TimeInterval) {
